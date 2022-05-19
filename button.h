@@ -10,10 +10,10 @@
 #include "render.h"
 #include "SFML/Graphics.hpp"
 
-class button_t: public abs_button_t {
+class button_t: public componente_t {
 public:
 //    button(float x, float y, float w, float h): componente_t(x, y, w, h) {}
-    using abs_button_t::abs_button_t;
+    using componente_t::componente_t;
     void draw() {
         auto canvas = render<sf::RenderWindow>::get_instance(
                 sf::VideoMode(800, 600),

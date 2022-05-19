@@ -10,7 +10,7 @@
 #include "render.h"
 #include <SFML/Graphics.hpp>
 
-class text_box_t: componente_t {
+class text_box_t: public componente_t {
 
 public:
     using componente_t::componente_t;

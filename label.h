@@ -10,10 +10,10 @@
 #include "render.h"
 #include <SFML/Graphics.hpp>
 
-class label_t: public abs_label_t {
+class label_t: public componente_t {
 
 public:
-    using abs_label_t::abs_label_t;
+    using componente_t::componente_t;
     void draw () override {
         auto canvas = render<sf::RenderWindow>::get_instance(
                 sf::VideoMode(800, 600),

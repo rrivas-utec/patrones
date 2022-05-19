@@ -9,17 +9,17 @@
 
 struct abs_label_t: public componente_t {
     virtual void draw() = 0;
-    using componente_t::componente_t
+    using componente_t::componente_t;
 };
 
 struct abs_text_box_t: public componente_t {
     virtual void draw() = 0;
-    using componente_t::componente_t
+    using componente_t::componente_t;
 };
 
 struct abs_button_t: public componente_t {
     virtual void draw() = 0;
-    using componente_t::componente_t
+    using componente_t::componente_t;
 };
 
 #endif //PATRONES_ABSTRACT_COMPONENT_H
