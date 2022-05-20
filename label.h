@@ -6,7 +6,6 @@
 #define PATRONES_LABEL_H
 
 #include "componente.h"
-#include "abstract_component.h"
 #include "render.h"
 #include <SFML/Graphics.hpp>
 
@@ -15,7 +14,7 @@ class label_t: public componente_t {
 public:
     using componente_t::componente_t;
     void draw () override {
-        auto canvas = render<sf::RenderWindow>::get_instance(
+        auto& canvas = render<sf::RenderWindow>::get_instance(
                 sf::VideoMode(800, 600),
                 "Patrones")->get();
         sf::RectangleShape shape({width, height});

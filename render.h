@@ -6,32 +6,29 @@
 #define PATRONES_RENDER_H
 
 #include <SFML/Graphics.hpp>
+#include <memory>
+
+using namespace std;
+
+template <typename T>
+using smart_ptr = std::unique_ptr<T>;
+
+template <typename T, typename ...Params>
+auto make_smart (Params ...params) { return std::make_unique<T>(params...); };
 
 template <typename T>
 class render {
-    // Atributo de objeto
-    T* data = nullptr;
-
-    // 1. Atributo de clase
-    inline static render<T>* instance {};
-
-    // 2. Ocultar el constructor
+    smart_ptr<T> data {};
+    inline static render<T>* instance;
     template <typename ...Params>
-    render(Params... params) {
-        data = new T(params...);
-    }
-
+    explicit render(Params... params): data(make_smart<T>(params...)) {}
 public:
-    // 3. Crear o utilizar una instancia existe
-    // Metodo de Clase --> Una sola puerta de acceso
     template <typename ...Params>
     static render<T>* get_instance(Params ...params) {
         if (instance == nullptr) instance = new render<T>(params...);
         return instance;
     }
-
-    // Metodo de Objeto
-    T* get() { return data; }
+    smart_ptr<T>& get(){ return data; }
 };
 
 

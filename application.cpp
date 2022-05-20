@@ -6,12 +6,11 @@
 #include "render.h"
 #include "componente.h"
 #include "button.h"
-#include "text_box.h"
 #include "label.h"
 
 void application::run() {
     // create the window
-    auto canvas = render<sf::RenderWindow>::get_instance(
+    auto& canvas = render<sf::RenderWindow>::get_instance(
             sf::VideoMode(800, 600),
             "Patrones")->get();
     // run the program as long as the window is open
@@ -36,8 +35,6 @@ void application::run() {
 }
 
 application::application() {
-    componentes.push_back(new button_t(100, 100, 200, 60));
-    componentes.push_back(new label_t(100, 400, 200, 60));
-    componentes.push_back(new text_box_t(400, 100, 200, 60));
-
+    componentes.push_back(make_shared<button_t>(100, 100, 200, 60));
+    componentes.push_back(make_shared<label_t>(100, 400, 200, 60));
 }

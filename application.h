@@ -6,11 +6,12 @@
 #define PATRONES_APPLICATION_H
 
 #include "componente.h"
+#include <memory>
 #include <vector>
 using namespace std;
 
 class application {
-    vector<componente_t*> componentes;
+    vector<shared_ptr<componente_t>> componentes;
 public:
     application();
     void run();
