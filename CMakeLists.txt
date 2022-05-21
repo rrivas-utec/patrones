@@ -10,18 +10,25 @@ set(SFML_DIR "${SFML_ROOT}/lib/cmake/SFML")
 set(SFML_STATIC_LIBRARIES TRUE)
 
 # Buscar un nuevo paquete
-find_package(Freetype REQUIRED)
+#find_package(Freetype REQUIRED)
 find_package(SFML COMPONENTS graphics audio REQUIRED)
 
 add_executable(${PROJECT_NAME}
         main.cpp
-        render.cpp render.h
+        render.h
         application.cpp application.h
         componente.h
-        button.cpp button.h
-        label.cpp label.h)
+        abstract_factory.h
+        sfml_button.h
+        sfml_label.h
+        sfml_factory.h
+        sdl_button.h
+        sdl_label.h
+        sdl_factory.h
+        factory.h
+        )
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio)
-target_link_libraries(${PROJECT_NAME} ${FREETYPE_LIBRARIES})
+#target_link_libraries(${PROJECT_NAME} ${FREETYPE_LIBRARIES})
 
 configure_file(./Oxanium-Regular.ttf ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COPYONLY)
 configure_file(./components.txt ${CMAKE_RUNTIME_OUTPUT_DIRECTORY} COPYONLY)

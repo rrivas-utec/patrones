@@ -11,10 +11,12 @@
 using namespace std;
 
 template <typename T>
-using smart_ptr = std::unique_ptr<T>;
+using smart_ptr = std::shared_ptr<T>;
+//using smart_ptr = T*;
 
 template <typename T, typename ...Params>
-auto make_smart (Params ...params) { return std::make_unique<T>(params...); };
+auto make_smart (Params ...params) { return std::make_shared<T>(params...); };
+//auto make_smart (Params ...params) { return new T(params...); };
 
 template <typename T>
 class render {
