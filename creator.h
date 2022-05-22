@@ -2,8 +2,8 @@
 // Created by rudri on 5/21/2022.
 //
 
-#ifndef PATRONES_FACTORY_H
-#define PATRONES_FACTORY_H
+#ifndef PATRONES_CREATOR_H
+#define PATRONES_CREATOR_H
 
 #include <functional>
 #include <string>
@@ -17,12 +17,12 @@ using namespace std;
 using callback_t = function<shared_ptr<componente_t>(string, float, float, float, float)>;
 
 // Factory
-class factory_t {
+class creator_t {
 private:
     unordered_map<string, callback_t> callbacks;
-    inline static factory_t* instance {};
+    inline static creator_t* instance {};
 protected:
-    factory_t() = default;
+    creator_t() = default;
 public:
     bool attach(const string& key, const callback_t& createFn) noexcept {
         return callbacks.insert({key, createFn}).second;
@@ -34,15 +34,15 @@ public:
     }
 
     // Metodo que reemplaza al constructor
-    static factory_t* get_instance() noexcept {
-        if (instance == nullptr) instance = new factory_t();
+    static creator_t* get_instance() noexcept {
+        if (instance == nullptr) instance = new creator_t();
         return instance;
     }
 };
 
 // Registro de familia de Factories
 namespace {
-    auto f = factory_t::get_instance();
+    auto f = creator_t::get_instance();
 
     auto rl = f->attach("label", [](const string& text,
                                     float left, float top, float width, float height) {
@@ -53,4 +53,4 @@ namespace {
         return make_shared<sfml_button_t>(text, left, top, width, height); });
 }
 
-#endif //PATRONES_FACTORY_H
+#endif //PATRONES_CREATOR_H

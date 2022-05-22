@@ -25,7 +25,7 @@ add_executable(${PROJECT_NAME}
         sdl_button.h
         sdl_label.h
         sdl_factory.h
-        factory.h
+        creator.h
         )
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio)
 #target_link_libraries(${PROJECT_NAME} ${FREETYPE_LIBRARIES})

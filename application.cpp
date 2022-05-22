@@ -8,7 +8,7 @@
 #include "render.h"
 #include "componente.h"
 #include "abstract_factory.h"
-#include "factory.h"
+#include "creator.h"
 
 //#define SFML_PORTAL
 #define SDL_PORTAL
@@ -101,7 +101,7 @@ void application::read_components() {
     ifstream file("components.txt");
     string type, key, text;
     float x = 0, y = 0, w = 0, h = 0;
-    auto factory = factory_t::get_instance();
+    auto factory = creator_t::get_instance();
     while (file >> type >> key >> text >> x >> y >> w >> h)
         add_component(key, factory->create(type, text, x, y, w, h));
 }
